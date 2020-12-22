@@ -1,3 +1,6 @@
+/**
+ * Copyright (C) 2020 Techcombank
+ */
 package org.openshift;
 
 import java.util.HashMap;
@@ -5,6 +8,12 @@ import javax.enterprise.context.RequestScoped;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
+
+/**
+ * @author: TruongLX2
+ *
+ * Date: Dec 22, 2020
+ */
 
 @RequestScoped
 @Path("/insult")

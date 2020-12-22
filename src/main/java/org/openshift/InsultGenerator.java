@@ -1,10 +1,17 @@
+/**
+ * Copyright (C) 2020 Techcombank
+ */
 package org.openshift;
 
+/**
+ * @author: TruongLX2
+ *
+ * Date: Dec 22, 2020
+ */
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
-
 
 public class InsultGenerator {
 	public String generateInsult() {
@@ -17,8 +24,7 @@ public class InsultGenerator {
 			databaseURL += "/" + System.getenv("POSTGRESQL_DATABASE");
 			String username = System.getenv("POSTGRESQL_USER");
 			String password = System.getenv("PGPASSWORD");
-			Connection connection = DriverManager.getConnection(databaseURL, username,
-			password);
+			Connection connection = DriverManager.getConnection(databaseURL, username, password);
 			if (connection != null) {
 				String SQL = "select a.string AS first, b.string AS second, c.string AS noun from short_adjective a , long_adjective b, noun c ORDER BY random() limit 1";
 				Statement stmt = connection.createStatement();
@@ -27,8 +33,8 @@ public class InsultGenerator {
 					if (vowels.indexOf(rs.getString("first").charAt(0)) == -1) {
 						article = "a";
 					}
-					theInsult = String.format("Thou art %s %s %s %s!", article,
-					rs.getString("first"), rs.getString("second"), rs.getString("noun"));
+					theInsult = String.format("Thou art %s %s %s %s!", article, rs.getString("first"),
+							rs.getString("second"), rs.getString("noun"));
 				}
 				rs.close();
 				connection.close();
